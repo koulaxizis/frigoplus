@@ -101,7 +101,7 @@ function updateActiveLink() {
 
 /**
  * Initialize Scroll Animations (Intersection Observer)
- * Με πολύ μικρό threshold (0.01)
+ * ΔΙΟΡΘΩΣΗ: rootMargin θετικό για να ενεργοποιείται μόνο όταν έρχεται από κάτω
  */
 function initScrollAnimations() {
     console.log('Initializing Scroll Animations...');
@@ -118,8 +118,8 @@ function initScrollAnimations() {
 
     const observerOptions = {
         root: null,
-        rootMargin: '-100px 0px -100px 0px', // Πρέπει να είναι 100px μέσα στην οθόνη
-        threshold: 0.01 // Ενεργοποιείται μόλις 1% είναι ορατό
+        rootMargin: '0px 0px 100px 0px', // ΔΙΟΡΘΩΣΗ: Θετικό value - ενεργοποιείται όταν το section είναι 100px πάνω από το κάτω μέρος της οθόνης
+        threshold: 0.01
     };
 
     const observer = new IntersectionObserver((entries) => {
