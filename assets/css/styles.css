@@ -131,7 +131,6 @@ a:hover {
     text-decoration: none;
 }
 
-/* Active Nav Link Styling */
 .nav-menu a.active {
     color: var(--primary-color);
     font-weight: 700;
@@ -228,7 +227,6 @@ a:hover {
     border-radius: 8px;
 }
 
-/* Hero Features (4 στήλες) */
 .hero-features {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -274,32 +272,14 @@ a:hover {
 }
 
 /* ================================
-   Sections - BASE STYLES (First!)
+   Sections - BASE STYLES
    ================================ */
 section {
     padding: 4rem 0;
-    opacity: 1; /* Default: visible */
-    transform: none;
 }
 
 section:nth-child(even) {
     background: var(--bg-light);
-}
-
-/* ================================
-   Scroll Animations (Override Base)
-   ================================ */
-/* Hide sections initially (higher specificity with !important for safety) */
-.about, .services, .hours, .reviews, .contact {
-    opacity: 0 !important;
-    transform: translateY(30px) !important;
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out !important;
-}
-
-/* Show when visible */
-.about.visible, .services.visible, .hours.visible, .reviews.visible, .contact.visible {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
 }
 
 /* ================================
@@ -707,7 +687,7 @@ address {
     .nav-menu a.active::after {
         display: none;
     }
-    
+
     .nav-menu a.active {
         background-color: rgba(0, 102, 204, 0.1);
         border-left: 4px solid var(--primary-color);
@@ -718,15 +698,15 @@ address {
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
     }
-    
+
     .feature-item {
         padding: 1.2rem;
     }
-    
+
     .feature-icon {
         font-size: 1.8rem;
     }
-    
+
     .feature-item h3 {
         font-size: 1rem;
     }
@@ -811,12 +791,6 @@ address {
 
     html {
         scroll-behavior: auto;
-    }
-    
-    .about, .services, .hours, .reviews, .contact {
-        opacity: 1 !important;
-        transform: none !important;
-        transition: none !important;
     }
 }
 
