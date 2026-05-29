@@ -228,10 +228,10 @@ a:hover {
     border-radius: 8px;
 }
 
-/* ΔΙΟΡΘΩΜΕΝΗ HERO FEATURES (4 στήλες) */
+/* Hero Features (4 στήλες) */
 .hero-features {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Σταθερά 4 στήλες */
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
     margin-top: 3rem;
 }
@@ -271,6 +271,20 @@ a:hover {
     margin-bottom: 0;
     font-weight: 400;
     font-size: 0.9rem;
+}
+
+/* ================================
+   Scroll Animations (Fade In Up)
+   ================================ */
+section:not(.hero) {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* ================================
@@ -696,7 +710,6 @@ address {
         padding-left: 1rem;
     }
 
-    /* ΔΙΟΡΘΩΣΗ HERO FEATURES ΓΙΑ TABLETS (2+2) */
     .hero-features {
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
@@ -741,7 +754,6 @@ address {
     }
 }
 
-/* ΔΙΟΡΘΩΣΗ HERO FEATURES ΓΙΑ ΚΙΝΗΤΑ (1 στήλη) */
 @media (max-width: 576px) {
     .hero-features {
         grid-template-columns: 1fr;
@@ -796,6 +808,12 @@ address {
     html {
         scroll-behavior: auto;
     }
+    
+    section:not(.hero) {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
 }
 
 /* ================================
@@ -811,25 +829,4 @@ address {
     .service-card, .hours-main, .hours-accounting, .review-card {
         border: 2px solid var(--text-dark);
     }
-}
-
-/* ================================
-   Scroll Animations (Fade In Up)
-   ================================ */
-section {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-section.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Εξαίρεση για το Hero (να είναι ορατό από την αρχή) */
-.hero {
-    opacity: 1;
-    transform: none;
-    transition: none;
 }
