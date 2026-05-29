@@ -123,11 +123,29 @@ a:hover {
     color: var(--text-dark);
     font-weight: 500;
     padding: 0.5rem 0;
+    position: relative;
 }
 
 .nav-menu a:hover {
     color: var(--primary-color);
     text-decoration: none;
+}
+
+/* Active Nav Link Styling */
+.nav-menu a.active {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.nav-menu a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
 }
 
 .mobile-menu-toggle {
@@ -163,19 +181,17 @@ a:hover {
    Hero Section
    ================================ */
 .hero {
-    /* Εικόνα Banner ως Background */
     background-image: url('../images/banner.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     color: white;
-    padding: 6rem 0; /* Αύξησα λίγο το padding για καλύτερη εμφάνιση */
+    padding: 6rem 0;
     position: relative;
     overflow: hidden;
-    min-height: 500px; /* Ελαφρώς μεγαλύτερο ύψος */
+    min-height: 500px;
 }
 
-/* Σκούρο Overlay για ευκρίνεια κειμένου */
 .hero::before {
     content: '';
     position: absolute;
@@ -183,21 +199,18 @@ a:hover {
     left: 0;
     right: 0;
     bottom: 0;
-    /* Μαύρο με 60% διαφάνεια - ρύθμισε το 0.6 αν θέλεις πιο ανοιχτό/σκοτεινό */
-    background: rgba(0, 0, 0, 0.65); 
+    background: rgba(0, 0, 0, 0.65);
     z-index: 1;
 }
 
-/* Το περιεχόμενο πρέπει να είναι πάνω από το overlay */
 .hero-content {
     position: relative;
-    z-index: 2; /* Σημαντικό: να είναι πάνω από το ::before */
+    z-index: 2;
     text-align: center;
     max-width: 900px;
     margin: 0 auto;
 }
 
-/* Βελτίωση ευκρίνειας για τον τίτλο και τη λεζάντα */
 .hero h1 {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
     margin-bottom: 1rem;
@@ -206,10 +219,10 @@ a:hover {
 .hero-tagline {
     font-size: 1.6rem;
     margin-bottom: 3rem;
-    opacity: 1; /* Πλήρης διαφάνεια */
+    opacity: 1;
     font-weight: 500;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
-    background: rgba(0, 0, 0, 0.3); /* Ελαφρύ φόντο πίσω από τη λεζάντα */
+    background: rgba(0, 0, 0, 0.3);
     display: inline-block;
     padding: 0.5rem 1.5rem;
     border-radius: 8px;
@@ -223,7 +236,7 @@ a:hover {
 }
 
 .feature-item {
-    background: rgba(255, 255, 255, 0.15); /* Λίγο πιο ανοιχτό */
+    background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(10px);
     padding: 2rem;
     border-radius: 12px;
@@ -475,7 +488,6 @@ section:nth-child(even) {
     display: block;
 }
 
-/* Google Rating Summary */
 .google-rating-summary {
     background: var(--bg-white);
     border-radius: 12px;
@@ -660,6 +672,16 @@ address {
 
     .nav-menu li {
         padding: 0.5rem 2rem;
+    }
+
+    .nav-menu a.active::after {
+        display: none;
+    }
+    
+    .nav-menu a.active {
+        background-color: rgba(0, 102, 204, 0.1);
+        border-left: 4px solid var(--primary-color);
+        padding-left: 1rem;
     }
 
     .about-grid,
