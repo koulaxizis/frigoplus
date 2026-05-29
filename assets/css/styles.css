@@ -228,30 +228,41 @@ a:hover {
     border-radius: 8px;
 }
 
+/* ΔΙΟΡΘΩΜΕΝΗ HERO FEATURES (4 στήλες) */
 .hero-features {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(4, 1fr); /* Σταθερά 4 στήλες */
+    gap: 1.5rem;
     margin-top: 3rem;
 }
 
 .feature-item {
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(10px);
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
 }
 
 .feature-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+    font-size: 2rem;
+    margin-bottom: 0.8rem;
 }
 
 .feature-item h3 {
     color: white;
     margin-bottom: 0.5rem;
+    font-size: 1.1rem;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
 
@@ -259,6 +270,7 @@ a:hover {
     color: rgba(255, 255, 255, 0.95);
     margin-bottom: 0;
     font-weight: 400;
+    font-size: 0.9rem;
 }
 
 /* ================================
@@ -684,12 +696,26 @@ address {
         padding-left: 1rem;
     }
 
-    .about-grid,
-    .contact-grid {
-        grid-template-columns: 1fr;
+    /* ΔΙΟΡΘΩΣΗ HERO FEATURES ΓΙΑ TABLETS (2+2) */
+    .hero-features {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    
+    .feature-item {
+        padding: 1.2rem;
+    }
+    
+    .feature-icon {
+        font-size: 1.8rem;
+    }
+    
+    .feature-item h3 {
+        font-size: 1rem;
     }
 
-    .hero-features {
+    .about-grid,
+    .contact-grid {
         grid-template-columns: 1fr;
     }
 
@@ -712,6 +738,13 @@ address {
 
     .google-badge-text {
         align-items: center;
+    }
+}
+
+/* ΔΙΟΡΘΩΣΗ HERO FEATURES ΓΙΑ ΚΙΝΗΤΑ (1 στήλη) */
+@media (max-width: 576px) {
+    .hero-features {
+        grid-template-columns: 1fr;
     }
 }
 
