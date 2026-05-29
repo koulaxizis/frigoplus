@@ -14,7 +14,12 @@ document.addEventListener('DOMContentLoaded', () => {
     setCurrentYear();
     initSmoothScroll();
     updateActiveLink();
-    initScrollAnimations();
+    
+    // Καθυστερούμε την αρχικοποίηση των animations για 500ms
+    // ώστε να βεβαιωθούμε ότι το CSS έχει φορτώσει πλήρως
+    setTimeout(() => {
+        initScrollAnimations();
+    }, 500);
 });
 
 /**
@@ -97,15 +102,13 @@ function updateActiveLink() {
 
 /**
  * Initialize Scroll Animations (Intersection Observer)
- * With debugging output
+ * Με καθυστέρηση και σωστή λογική
  */
 function initScrollAnimations() {
     console.log('Initializing Scroll Animations...');
     
-    // Check if IntersectionObserver is supported
     if (!('IntersectionObserver' in window)) {
         console.error('❌ IntersectionObserver not supported!');
-        // Fallback: show all sections
         document.querySelectorAll('.about, .services, .hours, .reviews, .contact').forEach(section => {
             section.classList.add('visible');
         });
@@ -117,7 +120,7 @@ function initScrollAnimations() {
     const observerOptions = {
         root: null,
         rootMargin: '0px',
-        threshold: 0.15
+        threshold: 0.1 // Ενεργοποιείται όταν το 10% της ενότητας είναι ορατό
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -130,7 +133,6 @@ function initScrollAnimations() {
         });
     }, observerOptions);
 
-    // Observe each section individually
     const sectionsToObserve = document.querySelectorAll('.about, .services, .hours, .reviews, .contact');
     console.log(`👀 Observing ${sectionsToObserve.length} sections`);
     
