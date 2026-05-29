@@ -12,21 +12,21 @@
     <meta name="robots" content="index, follow">
     
     <!-- Canonical URL (Σημαντικό για SEO) -->
-    <link rel="canonical" href="https://frigoplus.gr/">
+    <link rel="canonical" href="https://koulaxizis.github.io/frigoplus/">
 
     <!-- Open Graph / Social Media (Για Facebook, Viber, Messenger) -->
     <meta property="og:title" content="Frigoplus - Πρωτοπορία στην Ψύξη Μεταφορών">
     <meta property="og:description" content="25 χρόνια εμπειρίας στην επισκευή θαλάμων ψύξης. Άμεση εξυπηρέτηση στη Μάνδρα.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://frigoplus.gr/">
-    <meta property="og:image" content="https://frigoplus.gr/assets/images/banner.jpg">
+    <meta property="og:url" content="https://koulaxizis.github.io/frigoplus/">
+    <meta property="og:image" content="https://koulaxizis.github.io/frigoplus/assets/images/banner.jpg">
     <meta property="og:locale" content="el_GR">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Frigoplus - Ψύξη Μεταφορών">
     <meta name="twitter:description" content="Εξειδικευμένο προσωπικό και άμεση εξυπηρέτηση στην ψύξη μεταφορών.">
-    <meta name="twitter:image" content="https://frigoplus.gr/assets/images/banner.jpg">
+    <meta name="twitter:image" content="https://koulaxizis.github.io/frigoplus/assets/images/banner.jpg">
 
     <!-- ΣΤΟΙΧΕΙΑ SCHEMA.ORG (Για Google & AI Search) -->
     <script type="application/ld+json">
@@ -35,11 +35,11 @@
         "@graph": [
             {
                 "@type": "AutoRepair",
-                "@id": "https://frigoplus.gr/#organization",
+                "@id": "https://koulaxizis.github.io/frigoplus/#organization",
                 "name": "Frigoplus",
-                "url": "https://frigoplus.gr/",
-                "logo": "https://frigoplus.gr/assets/images/logo.png",
-                "image": "https://frigoplus.gr/assets/images/banner.jpg",
+                "url": "https://koulaxizis.github.io/frigoplus/",
+                "logo": "https://koulaxizis.github.io/frigoplus/assets/images/logo.png",
+                "image": "https://koulaxizis.github.io/frigoplus/assets/images/banner.jpg",
                 "description": "Εξειδικευμένη εταιρεία ψύξης μεταφορών με 25+ χρόνια εμπειρίας στην επισκευή και συντήρηση θαλάμων.",
                 "telephone": "+30-210-5561-566",
                 "email": "info@frigoplus.gr",
@@ -149,15 +149,18 @@
     <!-- Σύνδεσμος CSS -->
     <link rel="stylesheet" href="assets/css/styles.css">
     
-    <!-- Εναλλακτικό Favicon (προσωρινό) -->
-    <link rel="icon" href="data:,">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
 </head>
 <body>
+    <!-- Header -->
     <header class="header">
         <div class="container">
             <nav class="navbar">
                 <div class="logo">
-                    <a href="/" style="color:var(--primary-color); font-weight:bold; font-size:1.5rem;">Frigoplus</a>
+                    <a href="/">
+                        <img src="assets/images/logo.png" alt="Frigoplus Logo" width="150" height="50">
+                    </a>
                 </div>
                 <button class="mobile-menu-toggle" aria-label="Μενού">
                     <span class="hamburger"></span>
@@ -174,6 +177,7 @@
     </header>
 
     <main id="main-content">
+        <!-- Hero -->
         <section class="hero">
             <div class="container hero-content">
                 <h1>Frigoplus</h1>
@@ -198,11 +202,12 @@
             </div>
         </section>
 
+        <!-- About -->
         <section id="about" class="about">
             <div class="container">
                 <div class="about-grid">
-                    <div class="about-image" style="background-color: #e0e0e0; height: 400px; display: flex; align-items: center; justify-content: center; border-radius: 12px;">
-                        <span style="color: #666; font-weight: bold; font-size: 1.2rem;">[Φωτογραφία Εγκαταστάσεων]</span>
+                    <div class="about-image">
+                        <img src="assets/images/about.jpg" alt="Εγκαταστάσεις Frigoplus στη Μάνδρα" loading="lazy" width="1024" height="1024">
                     </div>
                     <div class="about-content">
                         <h2>Λίγα λόγια για εμάς</h2>
@@ -214,6 +219,7 @@
             </div>
         </section>
 
+        <!-- Services -->
         <section id="services" class="services">
             <div class="container">
                 <h2>Υπηρεσίες μας</h2>
@@ -237,6 +243,7 @@
             </div>
         </section>
 
+        <!-- Hours -->
         <section id="hours" class="hours">
             <div class="container">
                 <h2>Ώρες Λειτουργίας</h2>
@@ -267,6 +274,7 @@
             </div>
         </section>
 
+        <!-- Reviews -->
         <section id="reviews" class="reviews">
             <div class="container">
                 <h2>Τι Λένε οι Πελάτες μας</h2>
@@ -313,6 +321,7 @@
             </div>
         </section>
 
+        <!-- Contact -->
         <section id="contact" class="contact">
             <div class="container">
                 <h2>Επικοινωνία</h2>
@@ -349,6 +358,7 @@
         </section>
     </main>
 
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -372,6 +382,7 @@
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script src="assets/js/main.js"></script>
 </body>
 </html>
