@@ -15,11 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
     initSmoothScroll();
     updateActiveLink();
     
-    // Καθυστερούμε την αρχικοποίηση των animations για 500ms
-    // ώστε να βεβαιωθούμε ότι το CSS έχει φορτώσει πλήρως
+    // Καθυστερούμε την αρχικοποίηση των animations για 300ms
     setTimeout(() => {
         initScrollAnimations();
-    }, 500);
+    }, 300);
 });
 
 /**
@@ -102,7 +101,7 @@ function updateActiveLink() {
 
 /**
  * Initialize Scroll Animations (Intersection Observer)
- * Με καθυστέρηση και σωστή λογική
+ * Με πολύ μικρό threshold (0.01)
  */
 function initScrollAnimations() {
     console.log('Initializing Scroll Animations...');
@@ -119,8 +118,8 @@ function initScrollAnimations() {
 
     const observerOptions = {
         root: null,
-        rootMargin: '0px',
-        threshold: 0.1 // Ενεργοποιείται όταν το 10% της ενότητας είναι ορατό
+        rootMargin: '-100px 0px -100px 0px', // Πρέπει να είναι 100px μέσα στην οθόνη
+        threshold: 0.01 // Ενεργοποιείται μόλις 1% είναι ορατό
     };
 
     const observer = new IntersectionObserver((entries) => {
