@@ -5,8 +5,11 @@ const currentYear = document.getElementById('currentYear');
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-menu a');
 
+console.log('🚀 Frigoplus JS Loaded');
+
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM Content Loaded');
     initMobileMenu();
     setCurrentYear();
     initSmoothScroll();
@@ -18,7 +21,10 @@ document.addEventListener('DOMContentLoaded', () => {
  * Initialize Mobile Menu Toggle
  */
 function initMobileMenu() {
-    if (!mobileMenuToggle || !navMenu) return;
+    if (!mobileMenuToggle || !navMenu) {
+        console.warn('Mobile menu elements not found');
+        return;
+    }
 
     mobileMenuToggle.addEventListener('click', () => {
         const isOpen = navMenu.classList.toggle('active');
@@ -91,34 +97,46 @@ function updateActiveLink() {
 
 /**
  * Initialize Scroll Animations (Intersection Observer)
- * Χωρίς fallback: Αν δεν υποστηρίζεται, τα sections μένουν κρυφά (σπάνιο σε σύγχρονους browsers).
+ * With debugging output
  */
 function initScrollAnimations() {
-    // Αν ο browser δεν υποστηρίζει IntersectionObserver, σταματάμε εδώ
-    // (Σε σύγχρονους browsers αυτό δεν θα συμβεί)
+    console.log('Initializing Scroll Animations...');
+    
+    // Check if IntersectionObserver is supported
     if (!('IntersectionObserver' in window)) {
-        console.warn('IntersectionObserver not supported. Animations disabled.');
+        console.error('❌ IntersectionObserver not supported!');
+        // Fallback: show all sections
+        document.querySelectorAll('.about, .services, .hours, .reviews, .contact').forEach(section => {
+            section.classList.add('visible');
+        });
         return;
     }
+
+    console.log('✅ IntersectionObserver supported');
 
     const observerOptions = {
         root: null,
         rootMargin: '0px',
-        threshold: 0.15 // Ενεργοποιείται όταν το 15% της ενότητας είναι ορατό
+        threshold: 0.15
     };
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
+                console.log(`✨ Section ${entry.target.id} is now visible`);
                 entry.target.classList.add('visible');
-                observer.unobserve(entry.target); // Σταματάμε μετά την πρώτη φορά
+                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
-    // Παρατηρούμε όλα τα sections εκτός από το Hero
-    document.querySelectorAll('section:not(.hero)').forEach(section => {
+    // Observe each section individually
+    const sectionsToObserve = document.querySelectorAll('.about, .services, .hours, .reviews, .contact');
+    console.log(`👀 Observing ${sectionsToObserve.length} sections`);
+    
+    sectionsToObserve.forEach(section => {
         observer.observe(section);
+        console.log(`   - Watching: ${section.id}`);
     });
 }
 

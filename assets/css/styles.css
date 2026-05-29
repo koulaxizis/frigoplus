@@ -274,28 +274,32 @@ a:hover {
 }
 
 /* ================================
-   Scroll Animations (Fade In Up)
-   ================================ */
-section:not(.hero) {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-section.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* ================================
-   Sections
+   Sections - BASE STYLES (First!)
    ================================ */
 section {
     padding: 4rem 0;
+    opacity: 1; /* Default: visible */
+    transform: none;
 }
 
 section:nth-child(even) {
     background: var(--bg-light);
+}
+
+/* ================================
+   Scroll Animations (Override Base)
+   ================================ */
+/* Hide sections initially (higher specificity with !important for safety) */
+.about, .services, .hours, .reviews, .contact {
+    opacity: 0 !important;
+    transform: translateY(30px) !important;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out !important;
+}
+
+/* Show when visible */
+.about.visible, .services.visible, .hours.visible, .reviews.visible, .contact.visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
 }
 
 /* ================================
@@ -809,10 +813,10 @@ address {
         scroll-behavior: auto;
     }
     
-    section:not(.hero) {
-        opacity: 1;
-        transform: none;
-        transition: none;
+    .about, .services, .hours, .reviews, .contact {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
     }
 }
 
