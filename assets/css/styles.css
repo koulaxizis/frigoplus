@@ -1,5 +1,5 @@
 /* ================================
-   CSS Variables for Easy Customization
+   CSS Variables
    ================================ */
 :root {
     --primary-color: #0066cc;
@@ -52,9 +52,6 @@ body {
     top: 0;
 }
 
-/* ================================
-   Container
-   ================================ */
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -272,7 +269,23 @@ a:hover {
 }
 
 /* ================================
-   Sections - BASE STYLES
+   Scroll Animations (CRITICAL FIX)
+   ================================ */
+/* Hide sections initially */
+.about, .services, .hours, .reviews, .contact {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Show when visible */
+.about.visible, .services.visible, .hours.visible, .reviews.visible, .contact.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ================================
+   Sections Base
    ================================ */
 section {
     padding: 4rem 0;
@@ -438,8 +451,8 @@ section:nth-child(even) {
 .review-text {
     font-style: italic;
     color: var(--text-dark);
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
+    line-height: 1.7
+	    margin-bottom: 1.5rem;
     flex-grow: 1;
     quotes: "«" "»";
 }
@@ -687,7 +700,7 @@ address {
     .nav-menu a.active::after {
         display: none;
     }
-
+    
     .nav-menu a.active {
         background-color: rgba(0, 102, 204, 0.1);
         border-left: 4px solid var(--primary-color);
@@ -698,15 +711,15 @@ address {
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
     }
-
+    
     .feature-item {
         padding: 1.2rem;
     }
-
+    
     .feature-icon {
         font-size: 1.8rem;
     }
-
+    
     .feature-item h3 {
         font-size: 1rem;
     }
@@ -791,6 +804,12 @@ address {
 
     html {
         scroll-behavior: auto;
+    }
+    
+    .about, .services, .hours, .reviews, .contact {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
     }
 }
 
