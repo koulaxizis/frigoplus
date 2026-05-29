@@ -812,3 +812,24 @@ address {
         border: 2px solid var(--text-dark);
     }
 }
+
+/* ================================
+   Scroll Animations (Fade In Up)
+   ================================ */
+section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Εξαίρεση για το Hero (να είναι ορατό από την αρχή) */
+.hero {
+    opacity: 1;
+    transform: none;
+    transition: none;
+}

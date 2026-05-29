@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setCurrentYear();
     initSmoothScroll();
     updateActiveLink(); // Τρέχει αρχικά για να φωτιστεί η πρώτη ενότητα
+    initScrollAnimations(); // Τρέχει αρχικά για να εμφανιστούν οι ενότητες
 });
 
 /**
@@ -54,7 +55,6 @@ function initSmoothScroll() {
             
             const target = document.querySelector(targetId);
             if (target) {
-                // Calculate offset for fixed header
                 const headerOffset = 80;
                 const elementPosition = target.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
@@ -77,7 +77,6 @@ function updateActiveLink() {
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.clientHeight;
-        // Προσθέτουμε 150px για να ενεργοποιείται λίγο πριν φτάσει ακριβώς στην ενότητα
         if (pageYOffset >= (sectionTop - 150)) {
             current = section.getAttribute('id');
         }
@@ -91,8 +90,42 @@ function updateActiveLink() {
     });
 }
 
-// Event Listener για το scroll
+/**
+ * Initialize Scroll Animations (Intersection Observer)
+ * Με fallback: Αν ο browser δεν υποστηρίζει IntersectionObserver,
+ * όλες οι ενότητες εμφανίζονται αμέσως.
+ */
+function initScrollAnimations() {
+    // Fallback: Αν δεν υπάρχει IntersectionObserver, εμφανίζουμε όλα τα sections
+    if (!('IntersectionObserver' in window)) {
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('visible');
+        });
+        return;
+    }
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.15 // Η ενότητα πρέπει να είναι 15% ορατή για να ενεργοποιηθεί
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                // Σταματάμε να παρατηρούμε μετά την πρώτη εμφάνιση (performance)
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('section:not(.hero)').forEach(section => {
+        observer.observe(section);
+    });
+}
+
+// Event Listener για το scroll (για το active nav link)
 window.addEventListener('scroll', () => {
-    // Χρησιμοποιούμε requestAnimationFrame για καλύτερη απόδοση
     requestAnimationFrame(updateActiveLink);
 });
