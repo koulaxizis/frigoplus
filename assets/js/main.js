@@ -100,53 +100,45 @@ function updateActiveLink() {
 }
 
 /**
- * Initialize Scroll Animations (Intersection Observer)
- * Με Force Reflow για να βεβαιωθούμε ότι το CSS έχει εφαρμοστεί
+ * Initialize Scroll Animations (Scroll Event Listener)
+ * Χωρίς IntersectionObserver - ελέγχει τη θέση κάθε section
  */
 function initScrollAnimations() {
-    console.log('Initializing Scroll Animations...');
+    console.log('Initializing Scroll Animations (Scroll Event)...');
     
-    if (!('IntersectionObserver' in window)) {
-        console.error('❌ IntersectionObserver not supported!');
-        document.querySelectorAll('.about, .services, .hours, .reviews, .contact').forEach(section => {
-            section.classList.add('visible');
-        });
-        return;
-    }
-
-    console.log('✅ IntersectionObserver supported');
-
-    // FORCE REFLOW: Αναγκάζουμε το browser να υπολογίσει το layout
-    // Αυτό εξασφαλίζει ότι το CSS (opacity: 0) έχει εφαρμοστεί πριν ξεκινήσει το Observer
+    // FORCE REFLOW
     const dummy = document.body.offsetHeight; 
-    void dummy; // Η χρήση του void dummy αναγκάζει το reflow
+    void dummy;
 
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px 0px 100px 0px', // Ενεργοποιείται όταν το section είναι 100px πάνω από το κάτω μέρος
-        threshold: 0.01
-    };
+    // Ελέγχουμε κάθε section
+    function checkSections() {
+        const sectionsToCheck = document.querySelectorAll('.about, .services, .hours, .reviews, .contact');
+        
+        sectionsToCheck.forEach(section => {
+            const sectionTop = section.getBoundingClientRect().top;
+            const sectionHeight = section.clientHeight;
+            const triggerPoint = window.innerHeight * 0.85; // Ενεργοποιείται όταν το 15% του section είναι ορατό
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                console.log(`✨ Section ${entry.target.id} is now visible`);
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
+            // Αν το section είναι μέσα στην οθόνη
+            if (sectionTop < triggerPoint && sectionTop > -sectionHeight) {
+                if (!section.classList.contains('visible')) {
+                    console.log(`✨ Section ${section.id} is now visible`);
+                    section.classList.add('visible');
+                }
             }
         });
-    }, observerOptions);
+    }
 
-    const sectionsToObserve = document.querySelectorAll('.about, .services, .hours, .reviews, .contact');
-    console.log(`👀 Observing ${sectionsToObserve.length} sections`);
-    
-    sectionsToObserve.forEach(section => {
-        observer.observe(section);
-        console.log(`   - Watching: ${section.id}`);
+    // Τρέχουμε αρχικά
+    checkSections();
+
+    // Τρέχουμε σε κάθε scroll
+    window.addEventListener('scroll', () => {
+        requestAnimationFrame(checkSections);
     });
 }
 
-// Event Listener για το scroll
+// Event Listener για το scroll (για το active nav link)
 window.addEventListener('scroll', () => {
     requestAnimationFrame(updateActiveLink);
 });
