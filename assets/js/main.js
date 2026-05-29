@@ -15,10 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
     initSmoothScroll();
     updateActiveLink();
     
-    // Καθυστερούμε την αρχικοποίηση των animations για 300ms
+    // Περιμένουμε λίγο για να βεβαιωθούμε ότι το CSS έχει φορτώσει
     setTimeout(() => {
         initScrollAnimations();
-    }, 300);
+    }, 500);
 });
 
 /**
@@ -101,7 +101,7 @@ function updateActiveLink() {
 
 /**
  * Initialize Scroll Animations (Intersection Observer)
- * ΔΙΟΡΘΩΣΗ: rootMargin θετικό για να ενεργοποιείται μόνο όταν έρχεται από κάτω
+ * Με Force Reflow για να βεβαιωθούμε ότι το CSS έχει εφαρμοστεί
  */
 function initScrollAnimations() {
     console.log('Initializing Scroll Animations...');
@@ -116,9 +116,14 @@ function initScrollAnimations() {
 
     console.log('✅ IntersectionObserver supported');
 
+    // FORCE REFLOW: Αναγκάζουμε το browser να υπολογίσει το layout
+    // Αυτό εξασφαλίζει ότι το CSS (opacity: 0) έχει εφαρμοστεί πριν ξεκινήσει το Observer
+    const dummy = document.body.offsetHeight; 
+    void dummy; // Η χρήση του void dummy αναγκάζει το reflow
+
     const observerOptions = {
         root: null,
-        rootMargin: '0px 0px 100px 0px', // ΔΙΟΡΘΩΣΗ: Θετικό value - ενεργοποιείται όταν το section είναι 100px πάνω από το κάτω μέρος της οθόνης
+        rootMargin: '0px 0px 100px 0px', // Ενεργοποιείται όταν το section είναι 100px πάνω από το κάτω μέρος
         threshold: 0.01
     };
 
