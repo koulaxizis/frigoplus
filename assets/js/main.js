@@ -5,30 +5,16 @@ const currentYear = document.getElementById('currentYear');
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-menu a');
 
-console.log('🚀 Frigoplus JS Loaded');
-
-// Initialize when DOM is ready
+// Initialize
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM Content Loaded');
     initMobileMenu();
     setCurrentYear();
     initSmoothScroll();
     updateActiveLink();
-    
-    // Περιμένουμε λίγο για να βεβαιωθούμε ότι το CSS έχει φορτώσει
-    setTimeout(() => {
-        initScrollAnimations();
-    }, 500);
 });
 
-/**
- * Initialize Mobile Menu Toggle
- */
 function initMobileMenu() {
-    if (!mobileMenuToggle || !navMenu) {
-        console.warn('Mobile menu elements not found');
-        return;
-    }
+    if (!mobileMenuToggle || !navMenu) return;
 
     mobileMenuToggle.addEventListener('click', () => {
         const isOpen = navMenu.classList.toggle('active');
@@ -43,18 +29,12 @@ function initMobileMenu() {
     });
 }
 
-/**
- * Set Current Year in Footer
- */
 function setCurrentYear() {
     if (currentYear) {
         currentYear.textContent = new Date().getFullYear();
     }
 }
 
-/**
- * Initialize Smooth Scrolling for Anchor Links
- */
 function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -77,16 +57,11 @@ function initSmoothScroll() {
     });
 }
 
-/**
- * Update Active Link based on Scroll Position
- */
 function updateActiveLink() {
     let current = '';
     
     sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (pageYOffset >= (sectionTop - 150)) {
+        if (pageYOffset >= (section.offsetTop - 150)) {
             current = section.getAttribute('id');
         }
     });
@@ -99,46 +74,6 @@ function updateActiveLink() {
     });
 }
 
-/**
- * Initialize Scroll Animations (Scroll Event Listener)
- * Χωρίς IntersectionObserver - ελέγχει τη θέση κάθε section
- */
-function initScrollAnimations() {
-    console.log('Initializing Scroll Animations (Scroll Event)...');
-    
-    // FORCE REFLOW
-    const dummy = document.body.offsetHeight; 
-    void dummy;
-
-    // Ελέγχουμε κάθε section
-    function checkSections() {
-        const sectionsToCheck = document.querySelectorAll('.about, .services, .hours, .reviews, .contact');
-        
-        sectionsToCheck.forEach(section => {
-            const sectionTop = section.getBoundingClientRect().top;
-            const sectionHeight = section.clientHeight;
-            const triggerPoint = window.innerHeight * 0.85; // Ενεργοποιείται όταν το 15% του section είναι ορατό
-
-            // Αν το section είναι μέσα στην οθόνη
-            if (sectionTop < triggerPoint && sectionTop > -sectionHeight) {
-                if (!section.classList.contains('visible')) {
-                    console.log(`✨ Section ${section.id} is now visible`);
-                    section.classList.add('visible');
-                }
-            }
-        });
-    }
-
-    // Τρέχουμε αρχικά
-    checkSections();
-
-    // Τρέχουμε σε κάθε scroll
-    window.addEventListener('scroll', () => {
-        requestAnimationFrame(checkSections);
-    });
-}
-
-// Event Listener για το scroll (για το active nav link)
 window.addEventListener('scroll', () => {
     requestAnimationFrame(updateActiveLink);
-});
+}, { passive: true });
