@@ -36,6 +36,31 @@ body {
 }
 
 /* ================================
+   Skip Link (Accessibility)
+   ================================ */
+.skip-link {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    background: var(--primary-color);
+    color: white;
+    padding: 1rem 2rem;
+    z-index: 9999;
+    font-weight: 700;
+    font-size: 1rem;
+    border-radius: 0 0 8px 0;
+    text-decoration: none;
+    transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+    top: 0;
+    color: white;
+    outline: 3px solid white;
+    outline-offset: 2px;
+}
+
+/* ================================
    Container
    ================================ */
 .container {
