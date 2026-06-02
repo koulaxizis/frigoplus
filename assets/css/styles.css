@@ -566,6 +566,50 @@ section:nth-child(even) {
 }
 
 /* ================================
+   FAQ Section
+   ================================ */
+.faq {
+    background: var(--bg-white);
+    text-align: center;
+}
+
+.faq h2 {
+    margin-bottom: 3rem;
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.faq-item {
+    background: var(--bg-light);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    text-align: left;
+    transition: var(--transition);
+}
+
+.faq-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.faq-item h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.faq-item p {
+    margin-bottom: 0;
+    color: var(--text-light);
+    line-height: 1.7;
+}
+
+/* ================================
    Contact Section
    ================================ */
 .contact h2 {
@@ -732,6 +776,10 @@ address {
         grid-template-columns: 1fr;
     }
 
+    .faq-grid {
+        grid-template-columns: 1fr;
+    }
+
     .google-rating-summary {
         flex-direction: column;
         text-align: center;
@@ -812,7 +860,7 @@ address {
         --border-color: #000000;
     }
 
-    .service-card, .hours-main, .hours-accounting, .review-card {
+    .service-card, .hours-main, .hours-accounting, .review-card, .faq-item {
         border: 2px solid var(--text-dark);
     }
 }

@@ -1,0 +1,16 @@
+{
+    "name": "Frigoplus - Ψύξη Μεταφορών",
+    "short_name": "Frigoplus",
+    "description": "Εξειδικευμένη εταιρεία ψύξης μεταφορών με 25+ χρόνια εμπειρίας",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#0066cc",
+    "icons": [
+        {
+            "src": "/assets/images/favicon.ico",
+            "sizes": "any",
+            "type": "image/x-icon"
+        }
+    ]
+}

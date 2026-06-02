@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; frame-src https://www.openstreetmap.org;">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="theme-color" content="#0066cc">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="assets/css/styles.css" as="style">
+    <link rel="preload" href="assets/js/main.js" as="script">
+    
+    <!-- DNS Prefetch -->
+    <link rel="dns-prefetch" href="//maps.openstreetmap.org">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    
     <!-- Βασικά SEO -->
     <title>Frigoplus - Πρωτοπορία στην Ψύξη Μεταφορών | Επισκευή Θαλάμων</title>
     <meta name="description" content="Η Frigoplus εξειδικεύεται στην ψύξη μεταφορών με 25+ χρόνια εμπειρίας. Επισκευή θαλάμων ψύξης, συντήρηση και άμεση εξυπηρέτηση στη Μάνδρα Αττικής.">
@@ -28,7 +43,7 @@
     <meta name="twitter:description" content="Εξειδικευμένο προσωπικό και άμεση εξυπηρέτηση στην ψύξη μεταφορών.">
     <meta name="twitter:image" content="https://frigoplus.gr/assets/images/banner.jpg">
 
-    <!-- Schema.org -->
+    <!-- Schema.org - Local Business -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -53,8 +68,17 @@
                 },
                 "geo": {
                     "@type": "GeoCoordinates",
-                    "latitude": 38.05573134808498
+                    "latitude": 38.05573134808498,
                     "longitude": 23.523870007469277
+                },
+                "areaServed": {
+                    "@type": "GeoCircle",
+                    "geoMidpoint": {
+                        "@type": "GeoCoordinates",
+                        "latitude": 38.05573134808498,
+                        "longitude": 23.523870007469277
+                    },
+                    "geoRadius": "50000"
                 },
                 "openingHoursSpecification": [
                     {
@@ -72,6 +96,33 @@
                     }
                 ],
                 "priceRange": "$$",
+                "hasOfferCatalog": {
+                    "@type": "OfferCatalog",
+                    "name": "Ψυκτικές Υπηρεσίες",
+                    "itemListElement": [
+                        {
+                            "@type": "Offer",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Επισκευή Ψυκτικών Θαλάμων"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Προληπτική Συντήρηση"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Εξειδικευμένες Λύσεις Ψύξης"
+                            }
+                        }
+                    ]
+                },
                 "aggregateRating": {
                     "@type": "AggregateRating",
                     "ratingValue": "4.9",
@@ -141,12 +192,49 @@
                         "reviewBody": "Σωστοί επαγγελματίες, σωστή δουλειά."
                     }
                 ]
+            },
+            {
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "Ποιες περιοχές εξυπηρετείτε;",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Εξυπηρετούμε όλη την Αττική, με έμφαση στη Μάνδρα και τα γύρω χωριά. Διαθέτουμε μεγάλο χώρο στάθμευσης για εύκολη πρόσβαση."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Έχετε εγγύηση στις εργασίες;",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Ναι, παρέχουμε εγγύηση 6 μηνών σε όλες τις επισκευές και συντηρήσεις για τη δική σας ασφάλεια."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Πόσο χρόνο παίρνει μια επισκευή;",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Οι περισσότερες επισκευές ολοκληρώνονται εντός 1-3 εργάσιμων ημερών, ανάλογα με την πολυπλοκότητα της βλάβης."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Πώς μπορώ να πάρω προσφορά;",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Μπορείτε να μας καλέσετε στο 210-5561-566 ή να στείλετε email στο info@frigoplus.gr για δωρεάν προσφορά."
+                        }
+                    }
+                ]
             }
         ]
     }
     </script>
     
-    <link rel="stylesheet" href="assets/css/styles.css?v=3">
+    <link rel="stylesheet" href="assets/css/styles.css?v=4">
     <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
 </head>
 <body>
@@ -167,6 +255,7 @@
                     <li><a href="#services">Υπηρεσίες</a></li>
                     <li><a href="#hours">Ώρες</a></li>
                     <li><a href="#reviews">Αξιολογήσεις</a></li>
+                    <li><a href="#faq">Ερωτήσεις</a></li>
                     <li><a href="#contact">Επικοινωνία</a></li>
                 </ul>
             </nav>
@@ -316,9 +405,34 @@
                         <span style="color:#f5a623;">★★★★★</span>
                         <span style="font-size:0.85rem; color:#666;">Βάσει αξιολογήσεων Google</span>
                     </div>
-                    <a href="https://maps.app.goo.gl/g7CZaHAmqYyr7czS7" target="_blank" class="btn-reviews">
+                    <a href="https://maps.app.goo.gl/g7CZaHAmqYyr7czS7" target="_blank" rel="noopener noreferrer" class="btn-reviews">
                         Δείτε όλες τις αξιολογήσεις →
                     </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="faq">
+            <div class="container">
+                <h2>Συχνές Ερωτήσεις</h2>
+                <div class="faq-grid">
+                    <article class="faq-item">
+                        <h3>Ποιες περιοχές εξυπηρετείτε;</h3>
+                        <p>Εξυπηρετούμε όλη την Αττική, με έμφαση στη Μάνδρα και τα γύρω χωριά. Διαθέτουμε μεγάλο χώρο στάθμευσης για εύκολη πρόσβαση.</p>
+                    </article>
+                    <article class="faq-item">
+                        <h3>Έχετε εγγύηση στις εργασίες;</h3>
+                        <p>Ναι, παρέχουμε εγγύηση 6 μηνών σε όλες τις επισκευές και συντηρήσεις για τη δική σας ασφάλεια.</p>
+                    </article>
+                    <article class="faq-item">
+                        <h3>Πόσο χρόνο παίρνει μια επισκευή;</h3>
+                        <p>Οι περισσότερες επισκευές ολοκληρώνονται εντός 1-3 εργάσιμων ημερών, ανάλογα με την πολυπλοκότητα της βλάβης.</p>
+                    </article>
+                    <article class="faq-item">
+                        <h3>Πώς μπορώ να πάρω προσφορά;</h3>
+                        <p>Μπορείτε να μας καλέσετε στο 210-5561-566 ή να στείλετε email στο info@frigoplus.gr για δωρεάν προσφορά.</p>
+                    </article>
                 </div>
             </div>
         </section>
@@ -352,7 +466,9 @@
                             style="border: 0;" 
                             width="100%" 
                             height="350"
-                            title="Χάρτης">
+                            title="Χάρτης"
+                            loading="lazy"
+                            referrerpolicy="no-referrer">
                         </iframe>
                     </div>
                 </div>
@@ -378,11 +494,11 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>Σχεδιασμός: <a href="https://koulaxizis.gr" target="blank">Χρήστος Κουλαξίζης</a></p>
+                <p>Frigoplus <span id="currentYear">2026</span>. Σχεδιασμός: <a href="https://koulaxizis.gr" target="_blank" rel="noopener noreferrer">Χρήστος Κουλαξίζης</a></p>
             </div>
         </div>
     </footer>
 
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/main.js" defer></script>
 </body>
 </html>
