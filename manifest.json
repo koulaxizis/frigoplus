@@ -1,7 +1,7 @@
 {
-    "name": "Frigoplus - Ψύξη Μεταφορών",
+    "name": "Frigoplus - Ψύξη Φορτηγών",
     "short_name": "Frigoplus",
-    "description": "Εξειδικευμένη εταιρεία ψύξης μεταφορών με 25+ χρόνια εμπειρίας",
+    "description": "Εξειδικευμένη εταιρεία επισκευής ψυκτικών θαλάμων φορτηγών με 25+ χρόνια εμπειρίας",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#ffffff",

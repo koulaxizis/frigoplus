@@ -2,6 +2,7 @@
    CSS Variables
    ================================ */
 :root {
+    /* Light Theme (Default) */
     --primary-color: #0066cc;
     --secondary-color: #004499;
     --accent-color: #0099cc;
@@ -9,9 +10,30 @@
     --text-light: #666666;
     --bg-light: #f8f9fa;
     --bg-white: #ffffff;
+    --bg-hero-overlay: rgba(0, 0, 0, 0.65);
     --border-color: #e0e0e0;
     --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     --transition: all 0.3s ease;
+    --header-bg: #ffffff;
+    --footer-bg: #333333;
+    --card-bg: #ffffff;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+    --primary-color: #66b3ff;
+    --secondary-color: #4d99e6;
+    --accent-color: #3399cc;
+    --text-dark: #f5f5f5;
+    --text-light: #cccccc;
+    --bg-light: #1a1a1a;
+    --bg-white: #2d2d2d;
+    --bg-hero-overlay: rgba(0, 0, 0, 0.75);
+    --border-color: #444444;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --header-bg: #2d2d2d;
+    --footer-bg: #1a1a1a;
+    --card-bg: #2d2d2d;
 }
 
 /* ================================
@@ -33,6 +55,7 @@ body {
     line-height: 1.6;
     color: var(--text-dark);
     background-color: var(--bg-white);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* ================================
@@ -76,6 +99,7 @@ h1, h2, h3, h4 {
     font-weight: 600;
     line-height: 1.3;
     margin-bottom: 1rem;
+    color: var(--text-dark);
 }
 
 h1 { font-size: clamp(2rem, 5vw, 3rem); }
@@ -102,11 +126,12 @@ a:hover {
    Header
    ================================ */
 .header {
-    background: var(--bg-white);
+    background: var(--header-bg);
     box-shadow: var(--shadow);
     position: sticky;
     top: 0;
     z-index: 100;
+    transition: background-color 0.3s ease;
 }
 
 .navbar {
@@ -119,6 +144,12 @@ a:hover {
 .logo img {
     height: 50px;
     width: auto;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
 .nav-menu {
@@ -169,6 +200,7 @@ a:hover {
     height: 3px;
     background: var(--text-dark);
     position: relative;
+    transition: background-color 0.3s ease;
 }
 
 .hamburger::before,
@@ -179,10 +211,105 @@ a:hover {
     height: 3px;
     background: var(--text-dark);
     left: 0;
+    transition: background-color 0.3s ease;
 }
 
 .hamburger::before { top: -8px; }
 .hamburger::after { top: 8px; }
+
+/* ================================
+   Theme Toggle Button
+   ================================ */
+.theme-toggle {
+    background: var(--bg-light);
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    z-index: 99;
+}
+
+.theme-toggle:hover {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    transform: scale(1.1);
+}
+
+.theme-toggle svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle .sun-icon {
+    display: block;
+}
+
+.theme-toggle .moon-icon {
+    display: none;
+}
+
+[data-theme="dark"] .theme-toggle .sun-icon {
+    display: none;
+}
+
+[data-theme="dark"] .theme-toggle .moon-icon {
+    display: block;
+}
+
+[data-theme="dark"] .theme-toggle svg {
+    color: #ffd700;
+}
+
+/* ================================
+   Back to Top Button
+   ================================ */
+.back-to-top {
+    background: var(--primary-color);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: var(--transition);
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    background: var(--secondary-color);
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.back-to-top svg {
+    width: 24px;
+    height: 24px;
+}
 
 /* ================================
    Hero Section
@@ -206,8 +333,9 @@ a:hover {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.65);
+    background: var(--bg-hero-overlay);
     z-index: 1;
+    transition: background-color 0.3s ease;
 }
 
 .hero-content {
@@ -329,7 +457,7 @@ section:nth-child(even) {
 }
 
 .service-card {
-    background: var(--bg-white);
+    background: var(--card-bg);
     padding: 2rem;
     border-radius: 12px;
     box-shadow: var(--shadow);
@@ -362,7 +490,7 @@ section:nth-child(even) {
 }
 
 .hours-main, .hours-accounting {
-    background: var(--bg-white);
+    background: var(--card-bg);
     padding: 2rem;
     border-radius: 12px;
     box-shadow: var(--shadow);
@@ -421,7 +549,7 @@ section:nth-child(even) {
 }
 
 .review-card {
-    background: var(--bg-white);
+    background: var(--card-bg);
     padding: 2rem;
     border-radius: 12px;
     box-shadow: var(--shadow);
@@ -507,7 +635,7 @@ section:nth-child(even) {
 }
 
 .google-rating-summary {
-    background: var(--bg-white);
+    background: var(--card-bg);
     border-radius: 12px;
     padding: 2rem;
     box-shadow: var(--shadow);
@@ -631,6 +759,7 @@ section:nth-child(even) {
 
 .contact-item h3 {
     margin-bottom: 0.5rem;
+    color: var(--text-dark);
 }
 
 .contact-note {
@@ -652,9 +781,10 @@ address {
    Footer
    ================================ */
 .footer {
-    background: var(--text-dark);
+    background: var(--footer-bg);
     color: white;
     padding: 3rem 0 1rem;
+    transition: background-color 0.3s ease;
 }
 
 .footer-content {
@@ -721,7 +851,7 @@ address {
         top: 100%;
         left: 0;
         right: 0;
-        background: var(--bg-white);
+        background: var(--header-bg);
         flex-direction: column;
         padding: 1rem 0;
         box-shadow: var(--shadow);
@@ -744,6 +874,10 @@ address {
         background-color: rgba(0, 102, 204, 0.1);
         border-left: 4px solid var(--primary-color);
         padding-left: 1rem;
+    }
+
+    .header-actions {
+        margin-right: 1rem;
     }
 
     .hero-features {
@@ -792,6 +926,16 @@ address {
     .google-badge-text {
         align-items: center;
     }
+
+    .theme-toggle {
+        bottom: 80px;
+        right: 20px;
+    }
+
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+    }
 }
 
 @media (max-width: 576px) {
@@ -818,7 +962,7 @@ address {
    Print Styles
    ================================ */
 @media print {
-    .header, .footer, .mobile-menu-toggle {
+    .header, .footer, .mobile-menu-toggle, .theme-toggle, .back-to-top {
         display: none;
     }
 
@@ -861,6 +1005,10 @@ address {
     }
 
     .service-card, .hours-main, .hours-accounting, .review-card, .faq-item {
+        border: 2px solid var(--text-dark);
+    }
+
+    .theme-toggle, .back-to-top {
         border: 2px solid var(--text-dark);
     }
 }
