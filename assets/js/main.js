@@ -65,6 +65,11 @@ function initSmoothScroll() {
                     top: offsetPosition,
                     behavior: 'smooth'
                 });
+
+                // Move keyboard focus too (e.g. the skip link to <main>)
+                if (target.hasAttribute('tabindex')) {
+                    target.focus({ preventScroll: true });
+                }
             }
         });
     });
@@ -100,15 +105,18 @@ window.addEventListener('scroll', () => {
 function initThemeToggle() {
     if (!themeToggle) return;
 
-    // Check for saved theme preference or default to light
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    setTheme(savedTheme);
+    // The inline script in <head> already applied the saved or system theme
+    setTheme(document.documentElement.getAttribute('data-theme') || 'light');
 
     themeToggle.addEventListener('click', () => {
         const currentTheme = document.documentElement.getAttribute('data-theme');
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
         setTheme(newTheme);
-        localStorage.setItem('theme', newTheme);
+        try {
+            localStorage.setItem('theme', newTheme);
+        } catch (e) {
+            // Storage unavailable (private mode); theme still applies for this visit
+        }
     });
 }
 

@@ -83,6 +83,11 @@ body {
     outline-offset: 2px;
 }
 
+/* Skip-link target receives focus programmatically; no visible ring needed */
+#main-content:focus {
+    outline: none;
+}
+
 /* ================================
    Container
    ================================ */

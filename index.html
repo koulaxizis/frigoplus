@@ -10,7 +10,7 @@
     <meta name="theme-color" content="#0066cc" id="meta-theme-color">
     
     <!-- Preload Critical Resources -->
-    <link rel="preload" href="assets/css/styles.css" as="style">
+    <link rel="preload" href="assets/css/styles.css?v=7" as="style">
     <link rel="preload" href="assets/js/main.js" as="script">
     
     <!-- DNS Prefetch -->
@@ -123,14 +123,6 @@
                         }
                     ]
                 },
-                "aggregateRating": {
-                    "@type": "AggregateRating",
-                    "ratingValue": "4.9",
-                    "bestRating": "5",
-                    "worstRating": "1",
-                    "ratingCount": "150",
-                    "reviewCount": "150"
-                },
                 "sameAs": [
                     "https://maps.app.goo.gl/g7CZaHAmqYyr7czS7"
                 ]
@@ -168,8 +160,20 @@
     }
     </script>
     
-    <link rel="stylesheet" href="assets/css/styles.css?v=6">
+    <!-- Apply saved/system theme before first paint to avoid a light flash -->
+    <script>
+        (function () {
+            var theme;
+            try { theme = localStorage.getItem('theme'); } catch (e) {}
+            if (!theme) {
+                theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+    <link rel="stylesheet" href="assets/css/styles.css?v=7">
     <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <link rel="apple-touch-icon" href="assets/images/icon-192.png">
 </head>
 <body>
     <a href="#main-content" class="skip-link">Μετάβαση στο περιεχόμενο</a>
@@ -200,7 +204,7 @@
                         </svg>
                     </button>
                 </div>
-                <button class="mobile-menu-toggle" aria-label="Μενού">
+                <button class="mobile-menu-toggle" aria-label="Μενού" aria-expanded="false" aria-controls="navMenu">
                     <span class="hamburger"></span>
                 </button>
                 <ul class="nav-menu" id="navMenu">
@@ -215,7 +219,7 @@
         </div>
     </header>
 
-    <main id="main-content">
+    <main id="main-content" tabindex="-1">
                <!-- Hero -->
         <section class="hero">
             <div class="container hero-content">
@@ -241,7 +245,7 @@
                     <div class="feature-item">
                         <span class="feature-icon">⚡</span>
                         <h3>Άμεση Εξυπηρέτηση</h3>
-                        <p>Μεγάλος χώρος στάθμευσης</p>
+                        <p>Γρήγορη ανταπόκριση και μεγάλος χώρος στάθμευσης</p>
                     </div>
                     <div class="feature-item">
                         <span class="feature-icon">🛡️</span>
@@ -266,7 +270,7 @@
                     </div>
                     <div class="about-content">
                         <h2>Λίγα λόγια για εμάς</h2>
-                        <p>Η εταιρεία μας δραστηριοποιείται στον χώρο της ψύξης μεταφορών τα τελευταία εφτά χρόνια με εξιδεικευμένο προσωπικό και πάνω από εικοσιπέντε χρόνια προϋπηρεσίας.</p>
+                        <p>Η εταιρεία μας δραστηριοποιείται στον χώρο της ψύξης μεταφορών τα τελευταία εφτά χρόνια με εξειδικευμένο προσωπικό και πάνω από εικοσιπέντε χρόνια προϋπηρεσίας.</p>
                         <p>Στα εφτά χρόνια λειτουργίας μας, έχουμε εξυπηρετήσει πάνω από τριακόσιους συνεργάτες και έχουμε επισκευάσει χιλιάδες θαλάμους με συνέπεια και προσοχή.</p>
                         <p class="about-highlight"><strong>Στόχος μας ήταν, είναι και θα είναι να είμαστε κοντά σας σε κάθε βήμα. Είμαστε εδώ για εσάς!</strong></p>
                     </div>
@@ -352,10 +356,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- Reviews -->
-        <section id="reviews" class="reviews">
-            <!-- ... (το υπόλοιπο περιεχόμενο των reviews παραμένει ίδιο) ... -->
 
         <!-- Reviews -->
         <section id="reviews" class="reviews">
@@ -482,7 +482,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© <span id="currentYear">2024</span> Frigoplus. Σχεδιασμός: <a href="https://koulaxizis.gr" target="_blank" rel="noopener noreferrer">Χρήστος Κουλαξίζης</a></p>
+                <p>© <span id="currentYear">2026</span> Frigoplus. Σχεδιασμός: <a href="https://koulaxizis.gr" target="_blank" rel="noopener noreferrer">Χρήστος Κουλαξίζης</a></p>
             </div>
         </div>
     </footer>
